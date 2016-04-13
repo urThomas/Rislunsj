@@ -1,12 +1,14 @@
 
 #include <stdio.h>
-#include <wiringPi.h>
+#include "ADC_driver.h"
+#include <stdint.h>
 
 int ADC_init(){
-  if (wiringPiSPISetup (0, 1000000) < 0) return -1 ;
+  if (wiringPiSPISetup (0, 700000) < 0) return -1 ;
 }
 
 int ADC_read(){
+//  int buff[3];
   uint8_t buff[3];
   int adc;
   buff[0] = 1;
