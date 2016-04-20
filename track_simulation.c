@@ -46,7 +46,9 @@ double track_simulation(speed){
 
 	if (track_distance[current_track_segment] < total_distance) {current_track_segment+=1};
 
-	double tourque_reference = calculate_torque(speed, track_distance[current_track_segment], track_elevation_change[current_track_segment]);
+	segment_distance = track_elevation_change[current_track_segment]-track_elevation_change[current_track_segment+1];
+
+	double tourque_reference = calculate_torque(speed, segment_distance, track_elevation_change[current_track_segment+1]);
 	return tourque_reference;
 }
 
