@@ -1,28 +1,45 @@
 // FILE - track_simulation.c
-
-#include<stdio.h>
 #include"track_simulation.h"
-
-
 
 //Car parameters
 
 int mass = 100;
 float gravitational_const = 9.81;
+float frontal_area = 1.3;
+float desity_air = 1.2754;
+float drag_coefficient = 0.27;
 
+int current_track_segment;
+unsigned int time_last_call;
+double total_distance;
 
-int init_track_simulation(){
-        //do shit here
-        return 0;
+//Dumy vectors for testing
+double track_distance = [0 10 20 30 40];
+double track_elevation_change = [0 1 -1 1 2 -1];
+
+void init_track_simulation(){
+        current_track_segment = 0;
+        time_last_call = millis();
+        total_distance = 0;
+        //track_distance = read_track_distance();
+        //track_elevation_change = read_track_elevation();
 }
 
-float calculate_torque(double speed, int position){
-        return 3*position;
-
+double calculate_torque(double speed, double segment_distance, double eleveation_change){
+        double angle = atan(eleveation_change/segment_distance);
+        double elevation_force = mass*gravitational_const*sin(angle);
+        double drag_force = 0.5*desity_air*(speed*speed)*drag_coefficient*frontal_area;
+        return (elevation_force+drag_force)*speed;
 }
 
+double track_simulation(speed){
 
+	unsigned int time_now = millis();
+	total_distance += speed*(double)(time_now - time_last_call);
+	time_last_call = time_now;
 
-int dummy(int hei){
-        return 5 * hei;
+	if (track_distance[current_track_segment] < total_distance) {current_track_segment+=1};
+
+	double tourque_reference = calculate_torque(speed, track_distance[current_track_segment], track_elevation_change[current_track_segment]);
+	return tourque_reference;
 }

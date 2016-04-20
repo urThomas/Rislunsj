@@ -1,19 +1,11 @@
 #ifndef TRACK_SIMULATION_FILE
 #define TRACK_SIMULATION_FILE
 
+#include <wiringPi.h>
+#include <stdio.h>
+#include <math.h>
 
-int init_track_simulation(); 
-float calculate_torque(double speed, int position);
-
-
-
-
-
-
-
-
-
-
-
+void init_track_simulation();
+double track_simulation(double speed);
 
 #endif
