@@ -5,10 +5,10 @@
 #include<time.h>
 #include<math.h>
 #include"ADC_driver.h"
-//#include<wiringPi.h>
+#include<wiringPi.h>
 #include<softPwm.h>
-//#include"track_simulation.h"
-//#include"io.h"
+#include"track_simulation.h"
+#include"io.h"
 
 
 int main(int argc, char** arg){
@@ -25,10 +25,11 @@ int main(int argc, char** arg){
 	}
 	*/
 
-        
+        wiringPiSetupGpio();
+	//ADC_init();
+	init_track_simulation();	
 
 	
-        wiringPiSetupGpio();
 	
         /*
 
@@ -49,7 +50,7 @@ int main(int argc, char** arg){
 
         */
 
-
+	while(1){}
 
 
 

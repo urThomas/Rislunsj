@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "ADC_driver.h"
 #include <stdint.h>
+#include <wiringPi.h>
 
 int ADC_init(){
   if (wiringPiSPISetup (0, 700000) < 0) return -1 ;

@@ -1,8 +1,6 @@
 #ifndef ADC_DRIVER_H_
 #define ADC_DRIVER_H_
 
-#include <stdio.h>
-#include <wiringPi.h>
 
 int ADC_init(void);
 

@@ -4,12 +4,12 @@ IDIR2=./
 CC=gcc
 
 #setting the flags for the compiler
-CFLAGS=-Wall  -I$(IDIR2)  
+CFLAGS=-Wall  #-I$(IDIR2)  
 #setting source code
-SRC = main.c ADC_driver.h io.c track_simulation.c 
+SRC = main.c ADC_driver.c io.c track_simulation.c 
 
-test_benchmake: $(SRC)
-	$(CC) -o test_bech.o $(SRC) $(CFLAGS) -lwiringPi -phtread -std=c99
+benchmake:$(SRC)
+	$(CC) -o bench $(SRC) $(CFLAGS) -lwiringPi -lpthread -std=c99 -lm
 
 
 
