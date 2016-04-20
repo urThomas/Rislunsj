@@ -8,10 +8,16 @@ float gravitational_const = 9.81;
 float frontal_area = 1.3;
 float desity_air = 1.2754;
 float drag_coefficient = 0.27;
+float wheel_radius = 0.15;
 
 int current_track_segment;
 unsigned int time_last_call;
 double total_distance;
+
+double car_speed;
+unsigned int prev_speed_measure_time;
+int speed_sencor_pin = 24;
+
 
 //Dumy vectors for testing
 double track_distance = [0 10 20 30 40];
@@ -42,4 +48,16 @@ double track_simulation(speed){
 
 	double tourque_reference = calculate_torque(speed, track_distance[current_track_segment], track_elevation_change[current_track_segment]);
 	return tourque_reference;
+}
+
+void update_car_speed(void){
+        unsigned int time_now = millis();
+        unsigned int revolution_time = time_now - prev_speed_measure_time;
+        prev_speed_measure_time = millis();
+        car_speed = (1/revolution_time)*wheel_radius; //speed in m/s
+}
+
+void init_speed_sensor(void){
+        wiringPiISR (speed_sencor_pin, INT_EDGE_RISING,  &update_car_speed);
+
 }

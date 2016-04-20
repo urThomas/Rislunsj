@@ -24,8 +24,15 @@ int main(int argc, char** arg){
 		printf("reading from ADC: %i \n", ADC_read());
 	}
 	*/
-	wiringPiSetupGpio();
-	int pwm_error = softPwmCreate(24, 10, 100);
+
+        
+
+	
+        wiringPiSetupGpio();
+	
+        /*
+
+        int pwm_error = softPwmCreate(24, 10, 100);
 	if (pwm_error != 0 ){
 		printf("PWM-setup error\n");
 	}
@@ -38,6 +45,13 @@ int main(int argc, char** arg){
 	
 		softPwmWrite(24, 50 );
 	while(1){}
+
+
+        */
+
+
+
+
 
         return 0;
 }
