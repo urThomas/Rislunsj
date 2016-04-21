@@ -12,7 +12,7 @@ float gravitational_const = 9.81;
 float frontal_area = 1.3;
 float desity_air = 1.2754;
 float drag_coefficient = 0.27;
-float wheel_radius = 0.15;
+float wheel_radius = 0.3;
 
 int current_track_segment;
 unsigned int time_last_call;
@@ -64,9 +64,11 @@ double track_simulation(double speed){
 
 void update_car_speed(void){
         unsigned int time_now = millis();
-        unsigned int revolution_time = time_now - prev_speed_measure_time;
+	//printf("time now = %d \n", time_now);
+        double revolution_time = (time_now - prev_speed_measure_time);
+	//printf("revolution time = %f \n", revolution_time/1000);
         prev_speed_measure_time = millis();
-        car_speed = (1/revolution_time)*wheel_radius; //speed in m/s
+        car_speed = (1000/revolution_time)*wheel_radius; //speed in m/s
 	printf("Car speed = %f  m/s\n", car_speed);
 }
 
